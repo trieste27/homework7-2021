@@ -62,11 +62,13 @@ slider.oninput = function() {
 	console.log(video.volume);
 
 }
-
 document.querySelector("#vintage").addEventListener("click", function() {
-	// document.querySelector("video").style.oldSchool; WHAT IS THIS LINE SUPPOSED TO BE?
+		video.classList.add("oldSchool");
 });
 
+document.querySelector("#orig").addEventListener("click", function() {
+	video.classList.remove("oldSchool");
+});
 
 
 
