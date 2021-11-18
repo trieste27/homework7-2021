@@ -8,6 +8,19 @@ window.addEventListener("load", function() {
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	video.play();
+	var val = document.querySelector("#slider").value;
+	var volume = document.querySelector("#volume");
+	volume.innerHTML = (val + "%");
+	var slider = document.getElementById("slider");
+	var volume = document.getElementById("volume");
+	volume.innerHTML = slider.value + "%";
+
+	slider.oninput = function() {
+		volume.innerHTML = this.value + "%";
+		var video = document.querySelector("video");
+		video.volume = this.value / 100;
+		console.log(video.volume);
+	}
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -27,12 +40,14 @@ document.querySelector("#faster").addEventListener("click", function setPlaySpee
 
 document.querySelector("#skip").addEventListener("click", function skip() {
 	if ((video.currentTime + 15) >= video.duration){
+		console.log("Original location " + video.currentTime)
 		video.currentTime = 0
-		console.log(video.currentTime)
+		console.log("Going back to beginning.")
 	}
 	else {
+		console.log("Original location " + video.currentTime)
 		video.currentTime += 15;
-		console.log(video.currentTime)
+		console.log("New location " + video.currentTime)
 	}
 });
 
@@ -51,17 +66,6 @@ document.querySelector("#mute").addEventListener("click", function() {
 	}
 });
 
-var slider = document.getElementById("slider");
-var volume = document.getElementById("volume");
-volume.innerHTML = slider.value;
-
-slider.oninput = function() {
-	volume.innerHTML = this.value + "%";
-	var video = document.querySelector("video");
-	video.volume = this.value / 100;
-	console.log(video.volume);
-
-}
 document.querySelector("#vintage").addEventListener("click", function() {
 		video.classList.add("oldSchool");
 });
@@ -69,6 +73,7 @@ document.querySelector("#vintage").addEventListener("click", function() {
 document.querySelector("#orig").addEventListener("click", function() {
 	video.classList.remove("oldSchool");
 });
+
 
 
 
